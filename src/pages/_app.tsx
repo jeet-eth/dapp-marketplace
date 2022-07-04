@@ -1,17 +1,24 @@
+import { Web3ReactProvider } from "@web3-react/core";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Provider } from "react-redux";
 
 import "../index.css";
+import { store } from "../store";
+import { getLibrary } from "../utils";
 
 const MyApp = function ({ Component, pageProps }: AppProps) {
-
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>Colexion Marketplace</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Component {...pageProps} />
+
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Component {...pageProps} />
+      </Web3ReactProvider>
+
       <footer className="p-10 footer bg-base-200 text-base-content">
         <div className="flex gap-12 flex-wrap">
           <span className="footer-title">Docs</span>
@@ -39,7 +46,7 @@ const MyApp = function ({ Component, pageProps }: AppProps) {
           </a>
         </div>
       </footer>
-    </>
+    </Provider>
   );
 };
 

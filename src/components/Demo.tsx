@@ -8,8 +8,7 @@ import { useEagerConnect, useInactiveListener } from "../dapp/hooks";
 import { getErrorMessage } from "../utils";
 
 export const Demo = function () {
-  const context = useWeb3React<Web3Provider>();
-  const { connector, library, account, activate, deactivate, active, error } = context;
+  const { connector, library, account, activate, deactivate, active, error } = useWeb3React<Web3Provider>();
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = useState<any>();
