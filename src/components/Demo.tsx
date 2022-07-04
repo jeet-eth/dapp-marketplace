@@ -1,36 +1,11 @@
 import { Web3Provider } from "@ethersproject/providers";
-import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
-import {
-  NoEthereumProviderError,
-  UserRejectedRequestError as UserRejectedRequestErrorInjected,
-} from "@web3-react/injected-connector";
-import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from "@web3-react/walletconnect-connector";
+import { useWeb3React } from "@web3-react/core";
+
 import { useEffect, useState } from "react";
 
-import { injected, walletconnect, POLLING_INTERVAL } from "../dapp/connectors";
+import { injected, walletconnect } from "../dapp/connectors";
 import { useEagerConnect, useInactiveListener } from "../dapp/hooks";
-import logger from "../logger";
-import { Header } from "./Header";
-
-function getErrorMessage(error: Error) {
-  if (error instanceof NoEthereumProviderError) {
-    return "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile.";
-  }
-  if (error instanceof UnsupportedChainIdError) {
-    return "You're connected to an unsupported network.";
-  }
-  if (error instanceof UserRejectedRequestErrorInjected || error instanceof UserRejectedRequestErrorWalletConnect) {
-    return "Please authorize this website to access your Ethereum account.";
-  }
-  logger.error(error);
-  return "An unknown error occurred. Check the console for more details.";
-}
-
-export function getLibrary(provider: any): Web3Provider {
-  const library = new Web3Provider(provider);
-  library.pollingInterval = POLLING_INTERVAL;
-  return library;
-}
+import { getErrorMessage } from "../utils";
 
 export const Demo = function () {
   const context = useWeb3React<Web3Provider>();
@@ -55,7 +30,6 @@ export const Demo = function () {
   const disabled = !triedEager || !!activatingConnector || connected(injected) || connected(walletconnect) || !!error;
   return (
     <>
-      <Header />
       <div>{!!error && <h4 style={{ marginTop: "1rem", marginBottom: "0" }}>{getErrorMessage(error)}</h4>}</div>
       <div className="grid grid-cols-2 gap-2 px-2 py-4">
         <div className="card bordered">
