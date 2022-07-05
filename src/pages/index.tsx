@@ -1,4 +1,3 @@
-import { useWeb3React } from "@web3-react/core";
 import Demo from "../components/Demo";
 import Header from "../components/Header";
 import Counter from "../store/slices/Counter";

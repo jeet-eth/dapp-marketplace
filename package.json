@@ -25,6 +25,7 @@
     "@web3-react/network-connector": "6.2.9",
     "@web3-react/walletconnect-connector": "6.2.13",
     "daisyui": "2.17.0",
+    "ipfs-http-client": "^57.0.3",
     "loglevel": "1.8.0",
     "next": "12.2.0",
     "react": "18.2.0",
