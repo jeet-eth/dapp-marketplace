@@ -1,8 +1,8 @@
 import { useWeb3React } from "@web3-react/core";
 import { useState, useEffect } from "react";
 
-import logger from "../logger";
-import { injected } from "./connectors";
+import logger from "../../logger";
+import { injected } from "../../utils/connectors";
 
 export function useEagerConnect() {
   const { activate, active } = useWeb3React();

@@ -3,12 +3,13 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect } from "react";
 
 import useLocalStorage from "../hooks/useLocalStorage";
-import { Account } from "./Account";
-import { Balance } from "./Balance";
-import { ChainId } from "./ChainId";
+import Account from "./Account";
+import Balance from "./Balance";
+import ChainId from "./ChainId";
+import ConnectBtn from "./ConnectBtn";
 
 export const Header = function () {
-  const { active, error } = useWeb3React();
+  const { active, account, error } = useWeb3React();
   // const [theme, setTheme] = useLocalStorage<"dark" | "light">("theme", "dark");
 
   // useEffect(() => {
@@ -24,14 +25,19 @@ export const Header = function () {
 
   return (
     <div className="mb-2 shadow-lg navbar bg-neutral text-neutral-content rounded-box">
-      <div className="flex-1 px-2 mx-2">
+      <div className="flex-1 px-2 mx-2 gap-2">
         <span className="text-lg font-bold">{active ? "🟢" : error ? "🔴" : "🟠"}</span>
+        {active && account && <ChainId />}
       </div>
       <div className="flex-none hidden px-2 mx-2 lg:flex">
         <div className="flex items-center">
-          <ChainId />
-          <Account />
-          <Balance />
+          {active && account && (
+            <>
+              <Account />
+              <Balance />
+            </>
+          )}
+          <ConnectBtn />
           {/* <button type="button" onClick={toggleTheme} className="btn ">
             {theme === "dark" ? "🌞" : "🌙"}
           </button> */}

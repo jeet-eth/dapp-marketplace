@@ -1,6 +1,7 @@
 import { Web3ReactProvider } from "@web3-react/core";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 
 import "../index.css";
@@ -8,6 +9,7 @@ import { store } from "../store";
 import { getLibrary } from "../utils";
 
 const MyApp = function ({ Component, pageProps }: AppProps) {
+
   return (
     <Provider store={store}>
       <Head>

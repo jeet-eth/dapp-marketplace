@@ -1,15 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import { useWeb3React } from "@web3-react/core";
 
-export const Account = function Account() {
+function Account() {
   const { account } = useWeb3React();
 
   return (
-    <div className="btn btn-ghost btn-sm rounded-btn">
-      <span>Account</span>
-      <span role="img" aria-label="robot">
-        🤖
-      </span>
+    <div className="btn btn-ghost btn-sm rounded-btn normal-case">
+      <span>Account : &nbsp;</span>
       <span>
         {account === null
           ? "-"

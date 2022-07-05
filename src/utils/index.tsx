@@ -6,7 +6,7 @@ import {
 } from "@web3-react/injected-connector";
 import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from "@web3-react/walletconnect-connector";
 
-import { POLLING_INTERVAL } from "../dapp/connectors";
+import { POLLING_INTERVAL } from "./connectors";
 import logger from "../logger";
 
 export function getErrorMessage(error: Error) {
